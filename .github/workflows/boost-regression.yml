@@ -1,0 +1,90 @@
+name: Boost Regression Tests
+
+on:
+  push:
+    branches:
+      - '3.4.2.6-Boost_V6_261026'
+    paths:
+      - '.github/workflows/boost-regression.yml'
+      - 'plugins/aps/**'
+      - 'plugins/sync/**'
+      - 'core/interfaces/**'
+      - 'core/keys/**'
+      - 'docs/boost-port-inventory-2026-09.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    name: Boost APS + NSClient and APK validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Read JDK version
+        id: jdk
+        run: echo "version=$(jq -r '.default' .github/jdk-map.json)" >> "$GITHUB_OUTPUT"
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ steps.jdk.outputs.version }}
+          cache: gradle
+      # GitHub's Ubuntu runner already supplies Android SDK; the separate setup action
+      # attempts to install the retired 'tools' package and fails before tests begin.
+      - name: Run Boost APS unit tests
+        run: |
+          chmod +x gradlew
+          ./gradlew :plugins:aps:testFullDebugUnitTest :plugins:sync:testFullDebugUnitTest \
+            --no-daemon --stacktrace \
+            -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g" \
+            -Dorg.gradle.workers.max=2 \
+            -Dkotlin.compiler.execution.strategy=in-process
+      - name: Run Lyumjev PD and overview regressions
+        run: |
+          ./gradlew :plugins:insulin:testFullDebugUnitTest \
+            --tests '*InsulinLyumjevPDPluginTest' \
+            --no-daemon --stacktrace \
+            -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g" \
+            -Dorg.gradle.workers.max=2 \
+            -Dkotlin.compiler.execution.strategy=in-process
+          ./gradlew :plugins:main:testFullDebugUnitTest \
+            --tests '*BoostBatteryDisplayTest' --tests '*ButtonGridTest' \
+            --no-daemon --stacktrace \
+            -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g" \
+            -Dorg.gradle.workers.max=2 \
+            -Dkotlin.compiler.execution.strategy=in-process
+      - name: Run analyser regressions
+        run: node boost_analyser.test.js
+      - name: Compile complete fullDebug APK
+        run: |
+          ./gradlew :app:assembleFullDebug \
+            --no-daemon --stacktrace \
+            -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g" \
+            -Dorg.gradle.workers.max=2 \
+            -Dkotlin.compiler.execution.strategy=in-process
+      - name: Upload compiled debug APK
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: boost-final-integration-debug-apk
+          path: app/build/outputs/apk/full/debug/*.apk
+          if-no-files-found: warn
+      - name: Publish regression reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: boost-regression-results
+          path: |
+            plugins/aps/build/reports/tests/
+            plugins/aps/build/test-results/
+            plugins/sync/build/reports/tests/
+            plugins/sync/build/test-results/
+            plugins/insulin/build/reports/tests/
+            plugins/insulin/build/test-results/
+            plugins/main/build/reports/tests/
+            plugins/main/build/test-results/
+          if-no-files-found: ignore

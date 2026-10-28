@@ -1,4 +1,4 @@
-name: Seed branch transfer
+name: Complete branch transfer
 on:
   push:
     branches: [main]
@@ -7,46 +7,54 @@ on:
 permissions:
   contents: write
 jobs:
-  seed:
+  materialize:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - name: Fetch existing public Boost objects
-        run: git clone --bare --single-branch --branch dev https://github.com/agniabakush/Boost-in-AAPS_3.4.git "$RUNNER_TEMP/public-base.git"
-      - name: Seed matching source files
-        env:
-          PUBLIC_GIT_DIR: ${{ runner.temp }}/public-base.git
+      - name: Fetch seeded source objects
+        run: git fetch --no-tags --depth=1 origin _transfer_seed
+      - name: Materialize and verify exact source tree
         shell: bash
         run: |
           python3 <<'PY'
-          import json, os, subprocess
+          import base64, json, os, subprocess
           from pathlib import Path
           data = json.loads(Path(".migration/source-tree.json").read_text())
-          public_git = os.environ["PUBLIC_GIT_DIR"]
-          refs = list(dict.fromkeys(f["sha"] for f in data["files"]))
-          checked = subprocess.run(
-              ["git", "--git-dir", public_git, "cat-file", "--batch-check=%(objectname) %(objecttype)"],
-              input=("\n".join(refs) + "\n").encode(), stdout=subprocess.PIPE, check=True)
-          available = {line.split()[0] for line in checked.stdout.decode().splitlines() if line.endswith(" blob")}
-          env = dict(os.environ, GIT_ALTERNATE_OBJECT_DIRECTORIES=str(Path(public_git, "objects")))
+          env = dict(os.environ, GIT_AUTHOR_NAME="github-actions[bot]",
+                     GIT_AUTHOR_EMAIL="41898282+github-actions[bot]@users.noreply.github.com",
+                     GIT_COMMITTER_NAME="github-actions[bot]",
+                     GIT_COMMITTER_EMAIL="41898282+github-actions[bot]@users.noreply.github.com")
           def git(*args, input=None):
               return subprocess.run(["git", *args], input=input, stdout=subprocess.PIPE, check=True, env=env).stdout
+          restored = 0
+          for part in sorted(Path(".migration").glob("blobs-*.json")):
+              for blob in json.loads(part.read_text()):
+                  raw = base64.b64decode(blob["content"])
+                  actual = git("hash-object", "-w", "--stdin", input=raw).decode().strip()
+                  if actual != blob["sha"]:
+                      raise RuntimeError("Transferred blob hash mismatch: " + blob["sha"])
+                  restored += 1
+          shas = list(dict.fromkeys(f["sha"] for f in data["files"]))
+          checked = git("cat-file", "--batch-check=%(objectname) %(objecttype)",
+                        input=("\n".join(shas) + "\n").encode()).decode().splitlines()
+          if any(not line.endswith(" blob") for line in checked):
+              raise RuntimeError("Missing source blobs")
           git("read-tree", "--empty")
-          selected = [f for f in data["files"] if f["sha"] in available and not f["path"].startswith(".github/workflows/")]
-          records = [f'{f["mode"]} {f["sha"]}\t{f["path"]}\0' for f in selected]
-          for path in [".github/workflows/seed-transfer.yml", ".migration/source-tree.json"]:
-              sha = git("rev-parse", "HEAD:" + path).decode().strip()
-              records.append(f"100644 {sha}\t{path}\0")
+          records = [f'{f["mode"]} {f["sha"]}\t{f["path"]}\0' for f in data["files"]]
           git("update-index", "-z", "--index-info", input="".join(records).encode())
-          tree = git("write-tree").decode().strip()
-          env.update(GIT_AUTHOR_NAME="github-actions[bot]", GIT_AUTHOR_EMAIL="41898282+github-actions[bot]@users.noreply.github.com",
-                     GIT_COMMITTER_NAME="github-actions[bot]", GIT_COMMITTER_EMAIL="41898282+github-actions[bot]@users.noreply.github.com")
-          commit = git("commit-tree", tree, "-p", "HEAD", "-m", "Seed existing public objects for release branch transfer").decode().strip()
-          git("push", "origin", commit + ":refs/heads/_transfer_seed")
-          selected_shas = {f["sha"] for f in selected}
-          missing = sorted({f["sha"] for f in data["files"]} - selected_shas)
-          print("MIGRATION_SEED_COMMIT=" + commit)
-          print("MIGRATION_SEEDED_FILES=" + str(len(selected)))
-          print("MIGRATION_MISSING=" + json.dumps(missing, separators=(",", ":")))
+          exact_tree = git("write-tree").decode().strip()
+          if exact_tree != data["source_tree"]:
+              raise RuntimeError("Source tree mismatch: " + exact_tree)
+          helper = ".github/workflows/seed-transfer.yml"
+          helper_sha = git("rev-parse", "HEAD:" + helper).decode().strip()
+          git("update-index", "--add", "--cacheinfo", "100644," + helper_sha + "," + helper)
+          staged_tree = git("write-tree").decode().strip()
+          commit = git("commit-tree", staged_tree, "-p", "HEAD", "-m",
+                       "Materialize verified release snapshot from " + data["source_commit"]).decode().strip()
+          git("push", "origin", commit + ":refs/heads/_transfer_materialized")
+          print("MIGRATION_VERIFIED_SOURCE_TREE=" + exact_tree)
+          print("MIGRATION_MATERIALIZED_COMMIT=" + commit)
+          print("MIGRATION_RESTORED_BLOBS=" + str(restored))
+          print("MIGRATION_VERIFIED_FILES=" + str(len(data["files"])))
           PY
