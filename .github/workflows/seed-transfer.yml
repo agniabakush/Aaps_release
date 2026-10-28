@@ -1,0 +1,52 @@
+name: Seed branch transfer
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/seed-transfer.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch existing public Boost objects
+        run: git clone --bare --single-branch --branch dev https://github.com/agniabakush/Boost-in-AAPS_3.4.git "$RUNNER_TEMP/public-base.git"
+      - name: Seed matching source files
+        env:
+          PUBLIC_GIT_DIR: ${{ runner.temp }}/public-base.git
+        shell: bash
+        run: |
+          python3 <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          data = json.loads(Path(".migration/source-tree.json").read_text())
+          public_git = os.environ["PUBLIC_GIT_DIR"]
+          refs = list(dict.fromkeys(f["sha"] for f in data["files"]))
+          checked = subprocess.run(
+              ["git", "--git-dir", public_git, "cat-file", "--batch-check=%(objectname) %(objecttype)"],
+              input=("\n".join(refs) + "\n").encode(), stdout=subprocess.PIPE, check=True)
+          available = {line.split()[0] for line in checked.stdout.decode().splitlines() if line.endswith(" blob")}
+          env = dict(os.environ, GIT_ALTERNATE_OBJECT_DIRECTORIES=str(Path(public_git, "objects")))
+          def git(*args, input=None):
+              return subprocess.run(["git", *args], input=input, stdout=subprocess.PIPE, check=True, env=env).stdout
+          git("read-tree", "--empty")
+          selected = [f for f in data["files"] if f["sha"] in available and not f["path"].startswith(".github/workflows/")]
+          records = [f'{f["mode"]} {f["sha"]}\t{f["path"]}\0' for f in selected]
+          for path in [".github/workflows/seed-transfer.yml", ".migration/source-tree.json"]:
+              sha = git("rev-parse", "HEAD:" + path).decode().strip()
+              records.append(f"100644 {sha}\t{path}\0")
+          git("update-index", "-z", "--index-info", input="".join(records).encode())
+          tree = git("write-tree").decode().strip()
+          env.update(GIT_AUTHOR_NAME="github-actions[bot]", GIT_AUTHOR_EMAIL="41898282+github-actions[bot]@users.noreply.github.com",
+                     GIT_COMMITTER_NAME="github-actions[bot]", GIT_COMMITTER_EMAIL="41898282+github-actions[bot]@users.noreply.github.com")
+          commit = git("commit-tree", tree, "-p", "HEAD", "-m", "Seed existing public objects for release branch transfer").decode().strip()
+          git("push", "origin", commit + ":refs/heads/_transfer_seed")
+          selected_shas = {f["sha"] for f in selected}
+          missing = sorted({f["sha"] for f in data["files"]} - selected_shas)
+          print("MIGRATION_SEED_COMMIT=" + commit)
+          print("MIGRATION_SEEDED_FILES=" + str(len(selected)))
+          print("MIGRATION_MISSING=" + json.dumps(missing, separators=(",", ":")))
+          PY
