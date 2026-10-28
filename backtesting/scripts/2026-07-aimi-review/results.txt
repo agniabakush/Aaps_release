@@ -1,0 +1,173 @@
+== source agreement, DB vs Nightscout, overlapping local days ==
+overlap days: 26 (2026-07-02..2026-07-27)
+  DB: n=7359 mean=126.2 TIR=91.9% TBR70=1.66% CV=25.5%
+  NS: n=7419 mean=126.1 TIR=91.8% TBR70=1.83% CV=25.7%
+
+== eras ==
+Boost (DB, all clean days)   : 81 days 2026-05-04..2026-07-23
+Boost (28d pre-switch window): 28 days 2026-06-26..2026-07-23
+transition excluded          : 2026-07-24..2026-07-25
+AIMI (NS, full days)         : 4 days 2026-07-26..2026-07-29  (partial dropped: ['2026-07-30'])
+
+== per-day detail ==
+  BOOST-28d   2026-06-26 n=288 mean= 109.5 TIR= 96.9 TING= 91.0 TBR70= 3.12 TBR54=0.00 TAR180=  0.0 CV= 20.4
+  BOOST-28d   2026-06-27 n=288 mean= 118.9 TIR=100.0 TING= 94.1 TBR70= 0.00 TBR54=0.00 TAR180=  0.0 CV= 12.1
+  BOOST-28d   2026-06-28 n=288 mean= 125.8 TIR=100.0 TING= 74.3 TBR70= 0.00 TBR54=0.00 TAR180=  0.0 CV= 16.5
+  BOOST-28d   2026-06-29 n=288 mean= 118.4 TIR=100.0 TING= 92.7 TBR70= 0.00 TBR54=0.00 TAR180=  0.0 CV= 15.6
+  BOOST-28d   2026-06-30 n=288 mean= 127.4 TIR= 94.8 TING= 70.1 TBR70= 0.00 TBR54=0.00 TAR180=  5.2 CV= 20.8
+  BOOST-28d   2026-07-01 n=288 mean= 125.9 TIR=100.0 TING= 72.9 TBR70= 0.00 TBR54=0.00 TAR180=  0.0 CV= 15.0
+  BOOST-28d   2026-07-02 n=288 mean= 126.6 TIR= 87.5 TING= 63.9 TBR70= 0.00 TBR54=0.00 TAR180= 12.5 CV= 28.4
+  BOOST-28d   2026-07-03 n=288 mean= 137.9 TIR= 89.6 TING= 60.1 TBR70= 0.00 TBR54=0.00 TAR180= 10.4 CV= 21.4
+  BOOST-28d   2026-07-04 n=288 mean= 106.3 TIR= 95.5 TING= 91.0 TBR70= 4.51 TBR54=0.35 TAR180=  0.0 CV= 20.5
+  BOOST-28d   2026-07-05 n=288 mean= 134.3 TIR= 87.8 TING= 68.8 TBR70= 0.00 TBR54=0.00 TAR180= 12.2 CV= 19.3
+  BOOST-28d   2026-07-06 n=288 mean= 139.4 TIR= 85.4 TING= 61.5 TBR70= 0.00 TBR54=0.00 TAR180= 14.6 CV= 24.5
+  BOOST-28d   2026-07-07 n=288 mean= 134.2 TIR= 91.7 TING= 61.5 TBR70= 0.00 TBR54=0.00 TAR180=  8.3 CV= 22.0
+  BOOST-28d   2026-07-08 n=288 mean= 129.6 TIR= 99.0 TING= 65.3 TBR70= 0.00 TBR54=0.00 TAR180=  1.0 CV= 18.5
+  BOOST-28d   2026-07-09 n=283 mean= 116.8 TIR= 99.6 TING= 90.8 TBR70= 0.35 TBR54=0.00 TAR180=  0.0 CV= 15.5
+  BOOST-28d   2026-07-10 n=240 mean= 143.3 TIR= 70.4 TING= 52.5 TBR70= 1.25 TBR54=0.42 TAR180= 28.3 CV= 29.3
+  BOOST-28d   2026-07-11 n=288 mean= 125.1 TIR= 97.6 TING= 71.5 TBR70= 2.43 TBR54=0.00 TAR180=  0.0 CV= 18.5
+  BOOST-28d   2026-07-12 n=288 mean= 128.0 TIR=100.0 TING= 79.5 TBR70= 0.00 TBR54=0.00 TAR180=  0.0 CV= 12.9
+  BOOST-28d   2026-07-13 n=288 mean= 123.1 TIR=100.0 TING= 71.2 TBR70= 0.00 TBR54=0.00 TAR180=  0.0 CV= 20.7
+  BOOST-28d   2026-07-14 n=288 mean= 137.0 TIR= 93.4 TING= 61.8 TBR70= 0.00 TBR54=0.00 TAR180=  6.6 CV= 19.7
+  BOOST-28d   2026-07-15 n=288 mean= 136.5 TIR= 98.3 TING= 59.7 TBR70= 0.00 TBR54=0.00 TAR180=  1.7 CV= 18.9
+  BOOST-28d   2026-07-16 n=288 mean= 120.8 TIR= 93.4 TING= 84.0 TBR70= 0.00 TBR54=0.00 TAR180=  6.6 CV= 23.5
+  BOOST-28d   2026-07-17 n=288 mean= 119.8 TIR= 94.8 TING= 65.6 TBR70= 4.17 TBR54=0.00 TAR180=  1.0 CV= 27.5
+  BOOST-28d   2026-07-18 n=288 mean= 121.1 TIR= 94.1 TING= 81.9 TBR70= 1.39 TBR54=0.00 TAR180=  4.5 CV= 21.0
+  BOOST-28d   2026-07-19 n=289 mean= 116.7 TIR= 97.6 TING= 93.8 TBR70= 2.42 TBR54=0.00 TAR180=  0.0 CV= 14.9
+  BOOST-28d   2026-07-20 n=288 mean= 133.7 TIR= 94.8 TING= 65.3 TBR70= 0.00 TBR54=0.00 TAR180=  5.2 CV= 16.2
+  BOOST-28d   2026-07-21 n=288 mean= 123.3 TIR=100.0 TING= 63.9 TBR70= 0.00 TBR54=0.00 TAR180=  0.0 CV= 24.6
+  BOOST-28d   2026-07-22 n=288 mean= 123.7 TIR= 86.5 TING= 68.1 TBR70= 4.51 TBR54=0.00 TAR180=  9.0 CV= 30.0
+  BOOST-28d   2026-07-23 n=288 mean= 139.0 TIR= 76.0 TING= 68.1 TBR70= 1.04 TBR54=0.00 TAR180= 22.9 CV= 40.2
+
+  TRANSITION  2026-07-24 n=288 mean= 109.5 TIR= 97.6 TING= 88.5 TBR70= 2.43 TBR54=0.00 TAR180=  0.0 CV= 20.4
+  TRANSITION  2026-07-25 n=288 mean= 116.5 TIR= 86.1 TING= 87.2 TBR70= 5.21 TBR54=0.00 TAR180=  8.7 CV= 39.6
+
+  AIMI        2026-07-26 n=288 mean= 118.6 TIR= 82.6 TING= 77.1 TBR70= 9.03 TBR54=0.00 TAR180=  8.3 CV= 33.0
+  AIMI        2026-07-27 n=287 mean= 117.6 TIR= 86.4 TING= 71.8 TBR70= 7.67 TBR54=2.44 TAR180=  5.9 CV= 28.2
+  AIMI        2026-07-28 n=285 mean= 170.0 TIR= 70.2 TING= 29.1 TBR70= 0.00 TBR54=0.00 TAR180= 29.8 CV= 31.4
+  AIMI        2026-07-29 n=283 mean= 153.2 TIR= 68.9 TING= 52.7 TBR70= 0.00 TBR54=0.00 TAR180= 31.1 CV= 37.6
+
+== AIMI (4d) vs Boost 28d pre-switch (28d) ==
+metric           AIMI    Boost     diff         95% CI on diff  verdict
+tir_70_180      77.08    93.87   -16.79 [  -24.88,    -8.81]  distinguishable
+ting_63_140     57.74    73.14   -15.40 [  -35.43,    +2.23]  UNPROVEN
+tbr_70           4.20     0.90    +3.30 [   -0.98,    +7.60]  UNPROVEN
+tbr_54           0.61     0.02    +0.59 [   -0.05,    +1.81]  UNPROVEN
+tar_180         18.72     5.23   +13.49 [   +1.48,   +25.78]  distinguishable
+tar_250          4.90     0.19    +4.71 [   -0.19,    +9.86]  UNPROVEN
+mean           139.73   126.42   +13.31 [   -8.91,   +36.49]  UNPROVEN
+cv              37.19    23.22   +13.98 [   +6.96,   +16.45]  distinguishable
+
+== AIMI (4d) vs Boost full DB era (81d) ==
+metric           AIMI    Boost     diff         95% CI on diff  verdict
+tir_70_180      77.08    94.34   -17.26 [  -25.03,    -9.62]  distinguishable
+ting_63_140     57.74    76.01   -18.26 [  -37.00,    -1.18]  distinguishable
+tbr_70           4.20     1.10    +3.10 [   -1.12,    +7.36]  UNPROVEN
+tbr_54           0.61     0.09    +0.53 [   -0.18,    +1.75]  UNPROVEN
+tar_180         18.72     4.57   +14.16 [   +2.40,   +26.10]  distinguishable
+tar_250          4.90     0.06    +4.83 [   -0.06,    +9.86]  UNPROVEN
+mean           139.73   123.00   +16.72 [   -5.16,   +39.23]  UNPROVEN
+cv              37.19    23.88   +13.31 [   +6.57,   +14.91]  distinguishable
+
+== AIMI's 4-day block vs all 78 consecutive 4-day Boost blocks ==
+metric           AIMI  Boost min   median      max   AIMI percentile  outside Boost range?
+tir_70_180      77.08      86.29    95.32    99.22              0.0%  YES
+ting_63_140     57.74      54.59    76.93    88.02              2.6%  no
+tbr_70           4.20       0.00     1.04     5.25             97.4%  no
+tbr_54           0.61       0.00     0.00     1.40             94.9%  no
+tar_180         18.72       0.00     3.56    12.93            100.0%  YES
+tar_250          4.90       0.00     0.00     1.30            100.0%  YES
+mean           139.73     112.36   122.82   135.88            100.0%  YES
+cv              37.19      16.97    22.28    29.90            100.0%  YES
+
+worst 3 Boost blocks by TIR (for scale):
+  from 2026-05-28: TIR=86.3 TBR70=0.79 TAR180=12.9 CV=27.7
+  from 2026-05-31: TIR=86.6 TBR70=0.61 TAR180=12.8 CV=25.1
+  from 2026-05-30: TIR=88.0 TBR70=0.61 TAR180=11.4 CV=24.9
+
+################################################
+
+AIMI cycles with a suggestion: 3492 (2026-07-25T13:02:40.017Z .. 2026-07-29T23:13:09.676Z)
+
+== module / log-tag presence across AIMI cycles ==
+  BASAL_UNIFIED_SCALING                       3454   98.9%
+  UnifiedReactivity                           3483   99.7%
+  BasalLearner                                3483   99.7%
+  PkPdEstimator                               3483   99.7%
+  PHYSIO_RT                                   3483   99.7%
+  PAI:                                        3483   99.7%
+  PKPD_OBS                                    3483   99.7%
+  GATE_PKPD_MISSING                           3483   99.7%
+  PKPD predictions                            3483   99.7%
+  PKPD Debug: Config ENABLED is FALSE         1863   53.4%
+  MAX_IOB_STATIC                              3483   99.7%
+  MAXSMB_SLOPE_HIGH                            236    6.8%
+  Trajectory: Disabled                        1778   50.9%
+  TRAJECTORY STATUS                           1760   50.4%
+  CONTEXT MODULE                              1691   48.4%
+  PRED_SET                                    3450   98.8%
+  PRED_PIPE                                   3047   87.3%
+  AD_INTENT                                     48    1.4%
+  AUTODRIVE_APPLIED                             48    1.4%
+  DYNAMIC_BASAL                               2024   58.0%
+  MEAL_PRIORITY_CONTEXT                         59    1.7%
+  MEAL_PRIORITY_CHAIN                           59    1.7%
+  REFRACTORY_RELAX                              11    0.3%
+  GATE_REFRACTORY                              495   14.2%
+  GATE_MAXIOB                                  495   14.2%
+  GATE_MAXSMB                                  495   14.2%
+  GATE_ABSORPTION                              495   14.2%
+  GATE_PRED_MISSING                            495   14.2%
+  SMB_CAP                                      243    7.0%
+  BASAL_GOV                                   1756   50.3%
+  BOOST_BASAL_APPLIED                          616   17.6%
+  HyperKicker                                 1897   54.3%
+  REACTIVITY_LEARNER                          1706   48.9%
+  BASAL_LEARNER                               1760   50.4%
+  AIMI_SNAPSHOT                               1760   50.4%
+  Autosense ratio                             1897   54.3%
+  DIA Adjusted                                1897   54.3%
+  React: mode=                                1897   54.3%
+
+== numeric distributions (min / p25 / median / p75 / max, n) ==
+  basal_learner_combined       1.00     1.00     1.11     1.17     1.22   n=3483
+  reactivity_combined          0.00     0.50     0.50     0.90     1.50   n=3483
+  dynamic_basal_mult           0.00     0.98     6.26     8.83     9.98   n=1523
+  autodrive_intent_U           0.10     0.10     1.00     1.00     1.00   n=48
+  maxiob_pref                  7.00     7.00     7.00     7.00     8.00   n=3483
+  pkpd_eventual               39.00   108.00   147.00   196.00   401.00   n=5380
+  peaktime_min                35.00    67.80    90.00    93.70   120.00   n=2615
+  dia_adjusted_min           288.00   380.00   453.00   518.00   720.00   n=1897
+  smb_final_U                  0.00     0.00     0.00     0.40     2.55   n=1897
+  mpc_alpha_pct               50.00    55.00    75.00    79.00    90.00   n=3657
+  mpc_U                        0.00     1.00     1.00     1.00     5.00   n=3657
+  pi_U                        -8.72    -2.59    -0.97     0.00     1.00   n=3657
+  uam_U                        0.00     0.00     0.11     0.34     1.28   n=1882
+  isf_fused_note           absent
+
+== PKPD module health ==
+  reason says ISF(fused)=n/a : 984 / 3492   28.2%
+  reason says scale=NaN      : 984 / 3492   28.2%
+
+== MPC vs PI blend ==
+  cycles reporting both models       : 1897
+  opposite sign (models disagree)    : 1151   60.7%
+
+== HyperKicker (adds basal/SMB into a high) ==
+  cycles: 1897  54.3%
+  BG at fire: min=120 median=235 max=290 n=173
+
+== Autodrive V2 trigger reasons ==
+     27  Confirmed: Bg120 & EffDelta5 & Avg3
+     21  Early: Bg120 & EffDelta2
+
+== BASAL_GOV actions ==
+   1065  HOLD_CONSERVATIVE
+    295  WARMUP
+
+== learner factors by local day (mean) ==
+  2026-07-25 basalLearner=1.016 reactivity=0.492 dynBasalMult=3.83
+  2026-07-26 basalLearner=1.053 reactivity=0.454 dynBasalMult=4.96
+  2026-07-27 basalLearner=1.117 reactivity=0.429 dynBasalMult=6.08
+  2026-07-28 basalLearner=1.117 reactivity=0.479 dynBasalMult=4.79
+  2026-07-29 basalLearner=1.151 reactivity=1.324 dynBasalMult=6.59

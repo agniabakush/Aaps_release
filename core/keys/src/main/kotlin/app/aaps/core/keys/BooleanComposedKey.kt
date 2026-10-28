@@ -1,0 +1,17 @@
+package app.aaps.core.keys
+
+import app.aaps.core.keys.interfaces.BooleanComposedNonPreferenceKey
+
+enum class BooleanComposedKey(
+    override val key: String,
+    override val format: String,
+    override val defaultValue: Boolean,
+    override val exportable: Boolean = true
+) : BooleanComposedNonPreferenceKey {
+
+    Log("log_", "%s", false),
+    WidgetUseBlack("appwidget_use_black_", "%d", false),
+    WidgetShowStatus("appwidget_status_", "%d", true),
+    // Per-knob Boost V5 auto-config resolution flag (one composed entry per managed knob name).
+    BoostV5AutoConfigResolved("boost_v5_autoconfig_resolved_", "%s", false),
+}

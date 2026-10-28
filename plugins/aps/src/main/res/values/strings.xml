@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Autotune-->
+    <string name="key_autotune_last_run" translatable="false">key_autotune_last_run</string>
+
+    <string name="dynisf_use_profile_percentage">Use profile percentage</string>
+    <string name="dynisf_use_profile_sens">Depend on profile sensitivity</string>
+    <string name="dynisf_use_profile_sens_summary">Calculate Dynamic ISF based on profile sensitivity, not TDD-based sensitivity</string>
+    <string name="dynisf_bg_cap">DynamicISF BG cap</string>
+    <string name="dynisf_bg_cap_summary">When BG is above this value, the BG provided to DynamicISF would start to be lowered down, resulting in decrease of ISF power\'s growth.</string>
+    <string name="dynisf_adjust_sensitivity">Enable TDD based sensitivity ratio for basal and glucose target modification</string>
+    <string name="dynisf_adjust_sensitivity_summary">Uses the last 24h TDD/7D TDD to calculate sensitivity ratio used for increasing or decreasing basal rate, and also adjust glucose target if these options are enabled, in the same way Autosens does. It is recommended to start with this option turned off</string>
+    <string name="dyn_isf_adjust_title" formatted="false">DynamicISF TDD factor %</string>
+    <string name="dyn_isf_adjust_summary" formatted="false">TDD adjustment factor for DynamicISF. Set more than 100% for more aggressive correction doses, and less than 100% for less aggressive corrections.</string>
+    <string name="dynisf_velocity">DynamicISF sensitivity ratio factor %</string>
+    <string name="dynisf_velocity_summary">Base sensitivity ratio adjustment factor for DynamicISF. Set more than 100% for more aggressive correction doses, and less than 100% for less aggressive corrections.</string>
+    <string name="high_temptarget_raises_sensitivity_title">High temptarget raises sensitivity</string>
+    <string name="high_temptarget_raises_sensitivity_summary"><![CDATA[Raise sensitivity for temptargets >= 100]]></string>
+    <string name="low_temptarget_lowers_sensitivity_title">Low temptarget lowers sensitivity</string>
+    <string name="low_temptarget_lowers_sensitivity_summary"><![CDATA[Lower sensitivity for temptargets < 100]]></string>
+    <string name="openapssmb">OpenAPS SMB</string>
+    <string name="openaps_smb_dynamic_isf">Dynamic ISF</string>
+    <string name="openaps_auto_isf">Auto ISF</string>
+    <string name="smb_interval_summary">How frequently SMBs will be given in min</string>
+    <string name="loop_native_cadence_title">Loop at sensor cadence</string>
+    <string name="loop_native_cadence_summary">Run the loop on every sensor reading rather than once per five minutes. No effect on a five-minute sensor. On a one-minute sensor this makes the loop run every minute, which also allows more frequent SMBs.</string>
+    <string name="resistance_lowers_target_title">Resistance lowers target</string>
+    <string name="resistance_lowers_target_summary">When resistance is detected, lower the target glucose</string>
+    <string name="sensitivity_raises_target_title">Sensitivity raises target</string>
+    <string name="sensitivity_raises_target_summary">When sensitivity is detected, raise the target glucose</string>
+    <string name="openapsma_disabled">Plugin is disabled</string>
+    <string name="openapsma_no_glucose_data">No glucose data available</string>
+    <string name="openaps_no_as_data">No autosens data available</string>
+    <string name="dynisf_shortname">DYNISF</string>
+    <string name="autoisf_shortname">AUTOISF</string>
+    <string name="executing">Executing</string>
+    <string name="openapsama">OpenAPS AMA</string>
+    <string name="array_of_elements">Array of %1$d elements.\nActual value:</string>
+    <string name="oaps_shortname">OAPS</string>
+    <string name="description_ama">State of the algorithm in 2017</string>
+    <string name="description_smb">Most recent algorithm for advanced users</string>
+    <string name="description_smb_dynamic_isf">Most recent algorithm for advanced users with dynamic/automatic ISF</string>
+    <string name="description_auto_isf">Most recent algorithm for advanced users with AutoISF extensions</string>
+    <!-- Boost Plugin -->
+    <string name="openaps_boost">Boost</string>
+    <string name="boost_shortname">BOOST</string>
+    <string name="description_boost">Boost based accelerated bolusing with dynamic ISF</string>
+    <string name="openaps_boost_v2">Boost V2</string>
+    <string name="boost_v2_shortname">BOOST2</string>
+    <string name="description_boost_v2">Boost V2 with Chris Wilson DynISF V2 formula (2300/ln·TDD²·0.02)</string>
+    <string name="boost_dynisf_v2_title">Dynamic ISF V2 (TDD²-based)</string>
+    <string name="boost_use_tdd_v2_summary">Calculate ISF using Chris Wilson V2 formula: 2300/(ln(BG/insulinDivisor+1)·TDD²·0.02). TDD is required for V2 — falls back to profile ISF if data is incomplete</string>
+    <string name="boost_insulin_req_title">Boost Insulin Required %%</string>
+    <string name="boost_insulin_req_summary">Percentage of algorithm-determined insulin to deliver as SMB. Default: 50</string>
+    <string name="boost_bolus_title">Boost Bolus Cap</string>
+    <string name="boost_bolus_summary">Maximum individual bolus from Boost. Default: 2.5 U</string>
+    <string name="boost_percent_scale_title">Percent Scale Factor</string>
+    <string name="boost_percent_scale_summary">Maximum scale factor for percent-based Boost sizing between 108-180 mg/dL. Default: 200</string>
+    <string name="boost_scale_title">Boost Scale Value</string>
+    <string name="boost_scale_summary">Multiplier for calculated Boost insulin. Values &gt;=3 disable Boost. Default: 1.0</string>
+    <string name="boost_max_iob_title">Boost Max IOB</string>
+    <string name="boost_max_iob_summary">Maximum IOB for accelerated bolusing. Above this, regular oref1 used. Default: 1.0 U</string>
+    <string name="boost_cumulative_smb_cap_title">Cumulative SMB cap (60 min)</string>
+    <string name="boost_cumulative_smb_cap_summary">Total SMB insulin (U) that may be delivered in any rolling 60-minute window. Caps insulin stacking during sustained climbs. Set to 0 to disable. Factory default: 10 U (non-binding); auto-configuration tightens it to your own history (Confirmed cap + 2× Committed cap).</string>
+    <string name="boost_v5_active_dosing_title">V6 active dosing (ALPHA)</string>
+    <string name="boost_v5_active_dosing_summary">EXPERIMENTAL — when ON, the V6 observe-confirm-commit engine replaces the SMB dose on cycles SMBs are permitted. The base engine still controls basal and all safety gates. WARNING: this delivers insulin from an alpha algorithm; review closely and turn OFF to revert instantly.</string>
+    <string name="boost_v5_confirmed_cap_title">V6 CONFIRMED dose cap (U)</string>
+    <string name="boost_v5_confirmed_cap_summary">Hard upper limit on V6\'s CONFIRMED commit-shot SMB. Lower this to tighten V6 during alpha. Default: 2.5 U</string>
+    <string name="boost_v5_committed_cap_title">V6 COMMITTED dose cap (U)</string>
+    <string name="boost_v5_committed_cap_summary">Hard upper limit on V6\'s per-cycle COMMITTED holding SMB. Default: 0.5 U</string>
+    <string name="boost_v5_primer_cap_title">V6 acceleration primer (U)</string>
+    <string name="boost_v5_primer_cap_summary">Fizzle-safe early primer delivered on an accelerating rise during OBSERVING — reclaims V1\'s ~15-min-earlier meal response. Additive up to this base; any velocity-scaled excess is netted off the CONFIRMED commit-shot (move, not add). 0 = OFF. Auto-config derives a per-user value.</string>
+    <string name="boost_v5_primer_bolus_mode_title">Force bolus primer</string>
+    <string name="boost_v5_primer_bolus_mode_summary">Override: deliver the acceleration primer as a bolus even if auto-config routed you to the retractable temp-basal fallback (for hypo-prone users). Floors and the commit-shot net-off are unaffected. Default OFF (respect auto-config routing).</string>
+    <!-- Confirm tranche: the switch and fraction are user settings. Auto-config derives only
+         the threshold, may only raise it, and preserves manual changes. -->
+    <string name="boost_v5_confirm_tranche_title">Confirm tranche</string>
+    <string name="boost_v5_confirm_tranche_summary">Experimental, off by default. Splits the confirm commitment, giving part at the confirming cycle and holding the rest for ten minutes, released only if the rise continues. Can only deliver less insulin than without it, never more. A held remainder that cannot be delivered, because the rolling cumulative cap is spent or the sleep gate is shut, counts as a decision not to release.</string>
+    <string name="boost_v5_tranche_fraction_title">Confirm tranche: fraction given immediately</string>
+    <string name="boost_v5_tranche_fraction_summary">Share of the sized confirm dose delivered at the confirming cycle. The remainder is held. Set to 1.0 to make the tranche inert without switching it off.</string>
+    <string name="boost_v5_tranche_threshold_title">Confirm tranche: release threshold</string>
+    <string name="boost_v5_tranche_threshold_summary">The remainder is released when the rule\'s probability exceeds this. Higher withholds more. Auto-config sets it from your own confirm episodes over the last 45 days once there are at least 15 that clearly went big or stayed small, with at least 5 of each. It raises it whenever your episodes support that and does not currently lower it. A value you change after auto-config has written a threshold is kept, including a change back to 0.48.</string>
+    <string name="boost_v6_pre_meal_target_title">V6 anticipatory pre-meal target</string>
+    <string name="boost_v6_pre_meal_target_summary">EXPERIMENTAL — learns your habitual meal times (from V6 meal commits) and applies a low target shortly before a learned meal so insulin is working when carbs land. Exercise and post-exercise recovery override it. When OFF it runs in SHADOW (logs \"V6 pre-meal WOULD apply\" without changing dosing) so you can verify the learned times first.</string>
+    <string name="boost_v6_pre_meal_target_mgdl_title">V6 pre-meal target (mg/dL)</string>
+    <string name="boost_v6_pre_meal_target_mgdl_summary">The low target applied during the pre-meal window. Lower = more pre-emptive insulin. Default: 72 mg/dL (4.0 mmol).</string>
+    <string name="boost_v6_pre_meal_lead_min_title">V6 pre-meal lead time (min)</string>
+    <string name="boost_v6_pre_meal_lead_min_summary">How many minutes before a learned meal the low target window OPENS. It closes 45 min before the meal. Default: 60 min.</string>
+    <string name="boost_start_title">Boost Start Time</string>
+    <string name="boost_start_summary">Start of the Boost active window (24h format HH:mm). Default: 07:00</string>
+    <string name="boost_end_title">Boost End Time</string>
+    <string name="boost_end_summary">End of the Boost active window (24h format HH:mm). Default: 07:00</string>
+    <string name="boost_enable_percent_scale_title">Enable Boost Percentage Scaling</string>
+    <string name="boost_enable_percent_scale_summary">Scales SMB when glucose 108-180 mg/dL with increasing delta</string>
+    <string name="boost_enable_circadian_isf_title">Enable Circadian ISF</string>
+    <string name="boost_enable_circadian_isf_summary">Applies time-of-day ISF adjustment based on circadian rhythm model</string>
+    <string name="boost_allow_high_tt_title">Allow Boost with High Temp Targets</string>
+    <string name="boost_allow_high_tt_summary">Allow Boost when high temp target is active (exercise)</string>
+    <string name="boost_stepcount_settings_title">Step Count Settings</string>
+    <string name="boost_stepcount_settings_summary">Configure step-based activity and inactivity detection</string>
+    <string name="boost_inactivity_steps_title">Inactivity Step Count</string>
+    <string name="boost_inactivity_steps_summary">Steps/hour below which user is inactive. Default: 500</string>
+    <string name="boost_inactivity_pct_title">Inactivity Profile Percent</string>
+    <string name="boost_inactivity_pct_summary">Profile percentage when inactive. Default: 130</string>
+    <string name="boost_sleep_in_hrs_title">Sleep-in Hours</string>
+    <string name="boost_sleep_in_hrs_summary">Hours after Boost start to allow sleep-in. Default: 2</string>
+    <string name="boost_sleep_in_steps_title">Sleep-in Steps</string>
+    <string name="boost_sleep_in_steps_summary">Steps/hour below which user is considered still sleeping. Default: 250</string>
+    <string name="boost_activity_steps_5_title">5-Minute Activity Steps</string>
+    <string name="boost_activity_steps_5_summary">Steps in 5 min above which user is active. Default: 420</string>
+    <string name="boost_activity_steps_15_title">15-Minute Activity Steps</string>
+    <string name="boost_activity_steps_15_summary">Steps in 15 min above which user is active. Default: 800</string>
+    <string name="boost_activity_steps_30_title">30-Minute Activity Steps</string>
+    <string name="boost_activity_steps_30_summary">Steps in 30 min above which user is active. Default: 1200</string>
+    <string name="boost_activity_steps_60_title">60-Minute Activity Steps</string>
+    <string name="boost_activity_steps_60_summary">Steps in 60 min above which user is active. Default: 1800</string>
+    <string name="boost_activity_pct_title">Activity Profile Percent</string>
+    <string name="boost_activity_pct_summary">Profile percentage when active. Default: 80</string>
+
+    <!-- Boost Dynamic ISF -->
+    <string name="boost_dynisf_title">Dynamic ISF (TDD-based)</string>
+    <string name="boost_use_tdd_title">Enable TDD-based ISF</string>
+    <string name="boost_use_tdd_summary">Calculate ISF from Total Daily Dose using the logarithmic formula. When disabled, uses profile ISF directly</string>
+    <string name="boost_adjust_sensitivity_title">Enable TDD sensitivity adjustment</string>
+    <string name="boost_adjust_sensitivity_summary">Adjust sensitivity ratio using 24h TDD / 7D TDD, similar to Autosens. Recommended to start with this off</string>
+    <string name="boost_dynisf_normal_target_title">DynISF normal target</string>
+    <string name="boost_dynisf_normal_target_summary">Reference BG target for ISF calculation. Default: 99</string>
+    <string name="boost_dynisf_velocity_title">BG impact on ISF (%)</string>
+    <string name="boost_dynisf_velocity_summary">Controls how much your current blood glucose level affects ISF. At 100%%, ISF is fully adjusted by BG (higher BG = stronger ISF). At 50%%, only half the BG-driven adjustment is applied. At 0%%, BG has no effect and ISF stays at the target-level value regardless of current BG. Default: 100</string>
+    <string name="boost_dynisf_bg_cap_title">DynISF BG cap</string>
+    <string name="boost_dynisf_bg_cap_summary">BG above this value is softened to reduce ISF aggressiveness at very high BG. Default: 210</string>
+    <string name="boost_dynisf_adjust_factor_title">TDD adjustment factor (%)</string>
+    <string name="boost_dynisf_adjust_factor_summary">Scale the calculated TDD by this percentage. Default: 100</string>
+
+    <!-- Boost Preference Screen Sections -->
+    <string name="boost_settings_default_aaps">Default AAPS Settings</string>
+    <string name="boost_settings_boost_controls">Boost Controls</string>
+    <string name="boost_settings_exercise">Exercise Settings</string>
+    <string name="boost_settings_safety">Safety Settings</string>
+    <string name="boost_settings_summary">AAPS defaults, Boost controls, Dynamic ISF, Exercise, Night Mode, Safety, Advanced</string>
+
+    <!-- Boost BG Source Safety -->
+    <string name="boost_allow_all_bg_sources_title">Allow all BG sources for SMBs</string>
+    <string name="boost_allow_all_bg_sources_summary">Bypass advanced filtering check. WARNING: Only use with reliable CGM data</string>
+    <string name="boost_bypass_version_check_title">Bypass version expiry check</string>
+    <string name="boost_bypass_version_check_summary">Prevent AAPS from disabling closed loop when the version expires. WARNING: You assume responsibility for running an older version</string>
+
+    <!-- Boost Night Mode -->
+    <string name="boost_night_mode_title">Night Mode</string>
+    <string name="boost_night_mode_enabled_title">Enable Night Mode</string>
+    <string name="boost_night_mode_enabled_summary">Disable SMBs during night hours when BG is near target</string>
+    <string name="boost_night_mode_bg_offset_title">Night Mode BG Offset</string>
+    <string name="boost_night_mode_bg_offset_summary">SMBs disabled when BG is below profile target + this offset (mg/dL). Default: 27 (1.5 mmol/l)</string>
+    <string name="boost_night_mode_start_title">Night Mode Start Time</string>
+    <string name="boost_night_mode_start_summary">Start of Night Mode window (24h format HH:mm). Default: 22:00</string>
+    <string name="boost_night_mode_end_title">Night Mode End Time</string>
+    <string name="boost_night_mode_end_summary">End of Night Mode window (24h format HH:mm). Default: 07:00</string>
+    <string name="boost_night_mode_disable_with_cob_title">Disable Night Mode when COB > 0</string>
+    <string name="boost_night_mode_disable_with_cob_summary">Allow SMBs during Night Mode if carbs are on board</string>
+    <string name="boost_night_mode_disable_with_low_tt_title">Disable Night Mode with low temp target</string>
+    <string name="boost_night_mode_disable_with_low_tt_summary">Allow SMBs during Night Mode when temp target is below profile target</string>
+    <string name="boost_night_mode_smb_disabled">SMB disabled by Boost Night Mode</string>
+
+    <string name="boost_post_exercise_recovery_title">Post-Exercise Recovery</string>
+    <string name="boost_post_exercise_recovery_enabled_title">Enable Post-Exercise Recovery</string>
+    <string name="boost_post_exercise_recovery_enabled_summary">Automatically set a high TempTarget and reduce SMB aggressiveness after exercise to guard against delayed hypoglycemia</string>
+    <string name="boost_post_exercise_recovery_hours_title">Recovery Window Duration (hours)</string>
+    <string name="boost_post_exercise_recovery_hours_summary">How long the recovery TempTarget and SMB reduction remain active after exercise ends. Evidence supports 1–4h; default 2h covers the primary risk window (Riddell et al.)</string>
+    <string name="boost_post_exercise_recovery_target_title">Recovery TempTarget</string>
+    <string name="boost_post_exercise_recovery_target_summary">BG target during recovery window. ATTD 2020 consensus recommends 7–10 mmol/L (126–180 mg/dL) after aerobic exercise; default 8.0 mmol/L / 144 mg/dL</string>
+    <string name="boost_post_exercise_recovery_scale_title">SMB Reduction Factor</string>
+    <string name="boost_post_exercise_recovery_scale_summary">Multiplier (0.0–1.0) applied to boost_bolus and boost_scale during the recovery window. 0.5 = 50% reduction. Applies even if TempTarget is cancelled manually.</string>
+    <string name="boost_post_exercise_min_duration_title">Minimum Exercise Duration (min)</string>
+    <string name="boost_post_exercise_min_duration_summary">Recovery only triggers if exercise was detected for at least this many minutes. Avoids false triggers from brief activity bursts. Default: 10 min.</string>
+    <string name="boost_post_exercise_recovery_active">Post-exercise recovery active — SMB aggressiveness reduced</string>
+
+    <!-- Boost Heart Rate Integration -->
+    <string name="boost_hr_integration_title">Heart Rate Integration</string>
+    <string name="boost_hr_integration_summary">Augment step-based exercise detection using heart rate data from a paired wearable</string>
+    <string name="boost_hr_integration_enabled_title">Enable HR Integration</string>
+    <string name="boost_hr_integration_enabled_summary">Use heart rate data to classify exercise type (aerobic vs resistance) and confirm step-count signals. Requires a wearable sending HR data to AAPS. Feature is opt-in and falls back to step-only detection if no recent HR data is available.</string>
+    <string name="boost_hr_max_bpm_title">Maximum Heart Rate (HRmax)</string>
+    <string name="boost_hr_max_bpm_summary">Your maximum heart rate in BPM used for Karvonen zone calculation. Standard estimate: 220 minus age. Default 180 bpm is conservative for adults when age is unknown. Range 150–220.</string>
+    <string name="boost_hr_resting_bpm_title">Resting Heart Rate</string>
+    <string name="boost_hr_resting_bpm_summary">Your resting heart rate in BPM used for Karvonen Heart Rate Reserve method. Measure on waking before getting up. Default 60 bpm. Range 30–100.</string>
+    <string name="boost_hr_window_minutes_title">HR Averaging Window (minutes)</string>
+    <string name="boost_hr_window_minutes_summary">How many minutes of recent HR data to average for exercise classification. Default 15 min gives a stable reading. Range 5–60 min.</string>
+    <string name="boost_hr_stress_detection_title">Enable Stress Detection</string>
+    <string name="boost_hr_stress_detection_summary">Detect elevated HR without movement as possible stress or illness. Reduces insulin aggressiveness (raises target) when HR is in zone 2+ but steps are very low. Separate opt-in; disable if you experience false positives.</string>
+    <string name="openapsama_bolus_snooze_dia_divisor">Bolus snooze dia divisor</string>
+
+    <string name="openapsma_run">Run now</string>
+    <string name="openapsma_last_run_label">Last run</string>
+    <string name="openapsma_input_parameters_label">Input parameters</string>
+    <string name="openapsma_glucose_status_label">Glucose status</string>
+    <string name="openapsma_current_temp_label">Current temp</string>
+    <string name="openapsma_iob_data_label">IOB data</string>
+    <string name="openapsma_profile_label">Profile</string>
+    <string name="openapsma_meal_data_label">Meal data</string>
+    <string name="openapsma_request_label">Request</string>
+    <string name="constraints">Constraints</string>
+    <string name="openapsma_autosensdata_label">Autosens data</string>
+    <string name="openapsma_script_debug_data_label">Script debug</string>
+    <string name="openapsama_use_autosens">Use Autosens feature</string>
+    <string name="openapsma_max_basal_title">Max U/h a Temp Basal can be set to</string>
+    <string name="openapsma_max_basal_summary">This value is called max basal in OpenAPS context</string>
+    <string name="openapsma_max_iob_title">Maximum basal IOB OpenAPS can deliver [U]</string>
+    <string name="openapsma_max_iob_summary">This value is called Max IOB in OpenAPS context\nThis is maximal insulin in [U] APS can deliver at once.</string>
+    <string name="openapsama_autosens_adjust_targets_summary">Default value: true\nThis is used to allow autosens to adjust BG targets, in addition to ISF and basals.</string>
+    <string name="openapsama_autosens_adjust_targets">Autosens adjust targets, too</string>
+    <string name="openapsama_min_5m_carb_impact" translatable="false">min_5m_carbimpact</string>
+    <string name="openapsama_min_5m_carb_impact_summary">Default value: 3.0 (AMA) or 8.0 (SMB). This is a setting for default carb absorption impact per 5 minutes. The default is an expected 3mg/dl/5min. This affects how fast COB are decayed, and how much carb absorption is assumed in calculating future predicted BG, when BG is falling more than expected, or not rising as much as expected.</string>
+    <string name="openapsama_max_daily_safety_multiplier_summary">Default value: 3 This is a key OpenAPS safety cap. What this does is limit your basals to be 3x (in this people) your biggest basal rate. You likely will not need to change this, but you should be aware that’s what is discussed about “3x max daily; 4x current” for safety caps.</string>
+    <string name="openapsama_current_basal_safety_multiplier_summary">Default value: 4 This is the other half of the key OpenAPS safety caps, and the other half of “3x max daily; 4x current” of the safety caps. This means your basal, regardless of max basal set on your pump, cannot be any higher than this number times the current level of your basal. This is to prevent people from getting into dangerous territory by setting excessively high max basals before understanding how the algorithm works. Again, the default is 4x; most people will never need to adjust this and are instead more likely to need to adjust other settings if they feel like they are “running into” this safety cap.</string>
+    <string name="openapsama_bolus_snooze_dia_divisor_summary">Default value: 2\nBolus snooze is enacted after you do a meal bolus, so the loop won’t counteract with low temps when you’ve just eaten. The example here and default is 2; so a 3 hour DIA means that bolus snooze will be gradually phased out over 1.5 hours (3DIA/2).</string>
+    <string name="openapsama_link_to_preference_json_doc_txt">Attention!\nNormally you do not have to change these values below. Please CLICK HERE and READ the text and make sure you UNDERSTAND it before change any of these values.</string>
+    <string name="openapsama_link_to_preference_json_doc" translatable="false">http://openaps.readthedocs.io/en/latest/docs/walkthrough/phase-3/beyond-low-glucose-suspend.html</string>
+    <string name="always_use_short_avg">Always use short average delta instead of simple delta</string>
+    <string name="boost_postrescue_tight_ramp_trial">Post-rescue tight-ramp trial</string>
+    <string name="boost_postrescue_tight_ramp_trial_summary">Pre-registered within-user trial. On randomised treatment days the post-rescue rebound guard is capped at 60% and applies across the whole window instead of switching off above 170 mg/dL. Neither arm can deliver more insulin than the current behaviour. Leave OFF unless you are enrolled.</string>
+    <string name="always_use_short_avg_summary">Useful when data from unfiltered sources like xDrip+ gets noisy.</string>
+    <string name="openapsama_max_daily_safety_multiplier">Max daily safety multiplier</string>
+    <string name="openapsama_current_basal_safety_multiplier">Current basal safety multiplier</string>
+    <string name="openapssmb_max_iob_title">Maximum total IOB OpenAPS can\'t go over [U]</string>
+    <string name="openapssmb_max_iob_summary">This value is called Max IOB in OpenAPS context\nOpenAPS will not add more insulin if current IOB is greater than this value</string>
+    <string name="enable_uam">Enable UAM</string>
+    <string name="enable_smb">Enable SMB</string>
+    <string name="enable_smb_summary">Use Super Micro Boluses instead of temp basal for faster action</string>
+    <string name="enable_uam_summary">Detection of Unannounced meals</string>
+    <string name="enable_smb_always">Enable SMB always</string>
+    <string name="enable_smb_always_summary">Enable SMB always independently to COB, temp targets or boluses. Possible only with BG sources with advanced filtering of data</string>
+    <string name="enable_smb_after_carbs">Enable SMB after carbs</string>
+    <string name="enable_smb_after_carbs_summary">Enable SMB for 6h after carbs, even with 0 COB. Possible only with BG sources with advanced filtering of data</string>
+    <string name="enable_smb_with_cob">Enable SMB with COB</string>
+    <string name="enable_smb_with_cob_summary">Enable SMB when there is COB active.</string>
+    <string name="enable_smb_with_temp_target">Enable SMB with temp targets</string>
+    <string name="enable_smb_with_temp_target_summary">Enable SMB when there is temp target active (eating soon, exercise)</string>
+    <string name="enable_smb_with_high_temp_target">Enable SMB with high temp targets</string>
+    <string name="enable_smb_with_high_temp_target_summary">Enable SMB when there is high temp target active (exercise, above 100 mg/dl or 5.5 mmol/l)</string>
+    <string name="smb_max_minutes_summary">Max minutes of basal to limit SMB to</string>
+    <string name="uam_smb_max_minutes">UAM SMB max minutes</string>
+    <string name="uam_smb_max_minutes_summary">Max minutes of basal to limit SMB to for UAM</string>
+    <string name="carbs_req_threshold">Minimum Carbs Required For Suggestion</string>
+    <string name="carbs_req_threshold_summary">Minimum grams of carbs to display a carbs suggestion alert. Carbs suggestions below this number will not trigger a notification.</string>
+    <string name="lgs_threshold_summary">BG value below which insulin is suspended. Default value uses standard target model. User can set value between 60mg/dl (3.3mmol/l) and 100mg/dl(5.5mmol/l). Values below 65/3.6 result in use of default model</string>
+    <string name="lgs_threshold_title">BG level below which low glucose suspend occurs</string>
+
+    <string name="increasing_max_basal">Increasing max basal value because setting is lower than your max basal in profile</string>
+    <string name="max_basal_multiplier">max basal multiplier</string>
+    <string name="max_daily_basal_multiplier">max daily basal multiplier</string>
+    <string name="smb_disabled_in_preferences">SMB disabled in preferences</string>
+    <string name="uam_disabled_in_preferences">UAM disabled in preferences</string>
+    <string name="autosens_disabled_in_preferences">Autosens disabled in preferences</string>
+    <string name="use_dynamic_sensitivity_title">Enable dynamic sensitivity</string>
+    <string name="use_dynamic_sensitivity_summary">Adjust algorithm to use dynamic sensitivity instead of profile value</string>
+
+    <!--    Verify if needed in safety-->
+    <string name="limiting_iob">Limiting IOB to %1$.1f U because of %2$s</string>
+    <string name="maxvalueinpreferences">max value in preferences</string>
+    <string name="hardlimit">hard limit</string>
+
+    <!--    Autotune   -->
+    <string name="insulin_peak">Peak</string>
+
+    <!--    Loop -->
+    <string name="run_now">Run now</string>
+    <string name="smb_frequency_exceeded">A bolus was delivered within the last 3 minutes, skipping SMB</string>
+    <string name="pump_not_initialized">Pump not initialized!</string>
+    <string name="loop_shortname">LOOP</string>
+    <string name="description_loop">Activate or deactivate the implementation triggering the loop.</string>
+    <string name="no_aps_selected">NO APS SELECTED OR PROVIDED RESULT</string>
+    <string name="ignore5m">Ignore 5m</string>
+    <string name="ignore15m">Ignore 15m</string>
+    <string name="ignore30m">Ignore 30m</string>
+    <string name="carbs_suggestion">Carbs Suggestion</string>
+    <string name="open_loop_new_suggestion">New suggestion available</string>
+    <string name="basal_set_correctly">Basal set correctly</string>
+    <string name="last_run_label">Last run</string>
+    <string name="loop_aps_label">APS</string>
+    <string name="request_label">Request</string>
+    <string name="loop_constraints_processed_label">After processed constraints</string>
+    <string name="loop_tbr_request_time_label">Temp basal request time</string>
+    <string name="loop_tbr_execution_time_label">Temp basal execution time</string>
+    <string name="loop_tbr_set_by_pump_label">Temp basal set by pump</string>
+    <string name="loop_smb_request_time_label">SMB request time</string>
+    <string name="loop_smb_execution_time_label">SMB execution time</string>
+    <string name="loop_smb_set_by_pump_label">SMB set by pump</string>
+    <string name="loop_open_mode_min_change">Minimal request change [%]</string>
+    <string name="loop_open_mode_min_change_summary" formatted="false">Open Loop will popup new change request only if change is bigger than this value in %. Default value is 20%</string>
+    <string name="fallback_smb_no_tdd">Fallback to SMB. Not enough TDD data.</string>
+    <string name="fallback_to_isf_no_tdd">Fallback to profile sensitivity. Not enough data. Reason: %1$s</string>
+
+    <!-- Autotune -->
+    <string name="autotune_description">Help for potential adjustments of profile (ISF, carb ratio, and basal rates)</string>
+    <string name="autotune_shortname">AT</string>
+    <string name="autotune_settings">Autotune settings</string>
+    <string name="autotune_auto_title">Automation Switch Profile</string>
+    <string name="autotune_auto_summary">If enabled, Autotune will automatically update and switch to input profile after calculation from an automation rule.</string>
+    <string name="autotune_categorize_uam_as_basal_title">Categorize UAM as basal</string>
+    <string name="autotune_categorize_uam_as_basal_summary">Enable only if you have reliably entered all carbs eaten, with this option sudden rises seen by Autotune will be used to recommend changes to the basal rate.</string>
+    <string name="autotune_tune_insulin_curve_title">Tune insulin curve</string>
+    <string name="autotune_tune_insulin_curve_summary">Enable only if you use free peak. This option will tune peak and DIA durations</string>
+    <string name="autotune_default_tune_days_title">Number of days of data</string>
+    <string name="autotune_circadian_ic_isf_title">Apply average result in circadian IC/ISF</string>
+    <string name="autotune_circadian_ic_isf_summary">Autotune will not tune circadian variations, this option only apply the average tuning of IC and ISF to your circadian input profile</string>
+    <string name="autotune_additional_log_title">Include more log information for debugging</string>
+    <string name="autotune_additional_log_summary">Switch on only if requested by dev to send more log information to help debugging Autotune plugin</string>
+    <string name="autotune_default_tune_days_summary">Default number of days of data to be processed by Autotune (up to 30)</string>
+    <string name="autotune_tunedprofile_name">Tuned</string>
+    <string name="autotune_profile">Profile :</string>
+    <string name="autotune_last_run">Last run :</string>
+    <string name="autotune_warning">Warning :</string>
+    <string name="autotune_ic_warning">Selected profile has %1$d IC values. Autotune will use %2$.2f g/U</string>
+    <string name="autotune_isf_warning">Selected profile has %1$d ISF values. Autotune will use %2$.1f %3$s/U</string>
+    <string name="autotune_error">Error in input data, try to run again autotune or reduce the number of days</string>
+    <string name="autotune_error_more_days">Error in input data, increase the number of days</string>
+    <string name="autotune_warning_during_run">Autotune calculation started, please be patient</string>
+    <string name="autotune_warning_after_run">Check the results carefully before using it!</string>
+    <string name="autotune_partial_result">Partial result day %1$d / %2$d tuned</string>
+    <string name="autotune_result">Result: %1$s</string>
+    <string name="autotune_param">Param</string>
+    <string name="autotune_percent">%</string>
+    <string name="autotune_missing">Missing</string>
+    <string name="autotune_run">Run Autotune</string>
+    <string name="autotune_check_input_profile_button">Check input profile</string>
+    <string name="autotune_compare_profile">Compare profiles</string>
+    <string name="autotune_copy_localprofile_button">Copy to local profile</string>
+    <string name="autotune_update_input_profile_button">Update input profile</string>
+    <string name="autotune_revert_input_profile_button">Revert input profile</string>
+    <string name="autotune_copy_local_profile_message">Create a new local profile from this Autotune Profile?</string>
+    <string name="autotune_update_local_profile_message">Update %1$s profile with Autotune Profile?</string>
+    <string name="autotune_revert_local_profile_message">Revert %1$s profile with Input Profile?</string>
+    <string name="autotune_profile_invalid">Profile invalid</string>
+    <string name="autotune_log_title" translatable="false">|Param|Profile|Tuned|%/Miss.\n</string>
+    <string name="autotune_log_separator" translatable="false">+------------------------------------------\n</string>
+    <string name="autotune_log_peak" translatable="false">| %1$4.4s |\t%2$d |\t%3$d |\n</string>
+    <string name="autotune_log_dia" translatable="false">| %1$4.4s |\t%2$3.1f |\t%3$3.1f |\n</string>
+    <string name="autotune_log_ic_isf" translatable="false">| %1$4.4s | %2$3.3f |\t%3$3.3f |\n</string>
+    <string name="autotune_log_basal" translatable="false">|\t%1$02.0f\t| %2$3.3f |%3$3.3f\t| %5$.0f%% / %4$d\n</string>
+    <string name="autotune_log_sum_basal" translatable="false">|\t∑\t|\t%1$3.1f |\t%2$3.1f |\n</string>
+    <string name="not_available_full">Not available</string>
+    <string name="pump_disconnected">Pump disconnected</string>
+
+    <!--    autoISF -->
+    <string name="half_basal_exercise_target_title">Half basal exercise target</string>
+    <string name="half_basal_exercise_target_summary">Set to a number, e.g. 160, which means when temp target is 160 mg/dL and High temptarget raises sensitivity=true, run 50%% basal at this level (120 = 75%%; 140 = 60%%).</string>
+    <string name="autoISF_settings_title">AutoISF settings</string>
+    <string name="autoISF_settings_summary">AutoISF allows to adapt the insulin sensitivity factor (ISF) in various scenarios of glucose behaviour\n\nIt can also adapt SMB delivery settings</string>
+    <string name="smb_delivery_settings_title">SMB delivery settings</string>
+    <string name="smb_delivery_settings_summary">Set of options to increase the actual SMB size which can be delivered in situations where ISF was strengthened, i.e. fairly low ISF figure.\n\nUSE WITH CAUTION</string>
+    <string name="openapsama_enable_autoISF">Enable ISF adaptation by glucose behaviour</string>
+    <string name="openapsama_autoISF_max_summary">Similar to autosens_max this defines how strong ISF can become.\n\nThe default value 1.0 effectively shuts off this effect.\n\nWARNING: Be extremely careful when using values above 2.5</string>
+    <string name="openapsama_autoISF_min_summary">Similar to autosens_min this defines how weak ISF can become.\n\nThe default value 1.0 effectively shuts off this effect.</string>
+    <string name="openapsama_dura_ISF_weight_summary">This is the weight applied during longer lasting, elevated glucose plateaus and which strengthens ISF thereby potentially increasing insulin delivery.\n\nThe default value 0.0 effectively shuts off this effect.</string>
+    <string name="openapsama_lower_ISFrange_weight_summary">This is the weight applied while glucose is below target and which weakens ISF thereby potentially reducing insulin delivery.\n\nThe default value 0.0 effectively shuts off this effect.</string>
+    <string name="openapsama_higher_ISFrange_weight_summary">This is the weight applied while glucose is above target and which strengthens ISF thereby potentially increasing insulin delivery.\n\nThe default value 0.0 effectively shuts off this effect.</string>
+    <string name="openapsama_pp_ISF_weight_summary">This is the weight applied while glucose is rising and which strengthens ISF thereby potentially increasing insulin delivery.\n\nThe default value 0.0 effectively shuts off this effect.</string>
+    <string name="openapsama_bgAccel_ISF_weight_summary">This is the weight applied while glucose accelerates and which strengthens ISF thereby potentially increasing insulin delivery.\n\nThe default value 0.0 effectively shuts off this effect.</string>
+    <string name="openapsama_bgBrake_ISF_weight_summary">This is the weight applied while glucose decelerates and which weakens ISF thereby potentially reducing insulin delivery.\n\nThe default value 0.0 effectively shuts off this effect.</string>
+    <string name="openapsama_autoISF_max">Max autoISF ratio\n(autoISF_max)</string>
+    <string name="openapsama_autoISF_min">Min autoISF ratio\n(autoISF_min)</string>
+    <string name="openapsama_lower_ISFrange_weight">lower ISF-range weight\n(lower_ISFrange_weight)</string>
+    <string name="openapsama_higher_ISFrange_weight">higher ISF-range weight\n(higher_ISFrange_weight)</string>
+    <string name="openapsama_pp_ISF_weight">postprandial ISF weight\n(pp_ISF_weight)</string>
+    <string name="openapsama_bgAccel_ISF_weight">Weight while BG accelerates\n(bgAccel_ISF_weight)</string>
+    <string name="openapsama_bgBrake_ISF_weight">Weight while BG decelerates\n(bgBrake_ISF_weight)</string>
+    <string name="openapsama_dura_ISF_weight">dura_ISF weight\n(dura_ISF_weight)</string>
+    <string name="openapsama_smb_delivery_ratio">fixed SMB delivery ratio\n(smb_delivery_ratio)</string>
+    <string name="openapsama_smb_delivery_ratio_min">variable SMB delivery ratio, lower end\n(smb_delivery_ratio_min)</string>
+    <string name="openapsama_smb_delivery_ratio_max">variable SMB delivery ratio, upper end\n(smb_delivery_ratio_max)</string>
+    <string name="openapsama_smb_delivery_ratio_bg_range">variable SMB delivery ratio, mapped glucose range\n(smb_delivery_ratio_bg_range)</string>
+    <string name="openapsama_smb_max_range_extension">SMB/UAM max range extension\n(smb_max_range_extension)</string>
+    <string name="openapsama_smb_delivery_ratio_summary">Default value: 0.5 This is another key OpenAPS safety cap, and specifies what share of the total insulin required can be delivered as SMB. This is to prevent people from getting into dangerous territory by setting SMB requests from the caregivers phone at the same time. Increase this experimental value slowly and with caution.</string>
+    <string name="openapsama_smb_delivery_ratio_min_summary">Default value: 0.5 This is the lower end of a linearly increasing ratio rather than the fix value above.</string>
+    <string name="openapsama_smb_delivery_ratio_max_summary">Default value: 0.5 This is the upper end of a linearly increasing ratio rather than the fix value above.</string>
+    <string name="openapsama_smb_delivery_ratio_bg_range_summary">Default value: 0. The linearly increasing SMB delivery ratio is mapped to the glucose range [target_bg, target_bg+bg_range].\nAt target_bg the SMB ratio is smb_delivery_ratio_min, at target_bg+bg_range it is smb_delivery_ratio_max\nWith 0 the linearly increasing SMB ratio is disabled and the fixed smb_delivery_ratio is used.</string>
+    <string name="openapsama_smb_max_range_extension_summary">Default value: 1 This is another key OpenAPS safety cap, and specifies by what factor you can exceed the regular 120 maxSMB/maxUAM minutes. Increase this experimental value slowly and with caution.</string>
+    <string name="enableSMB_EvenOn_OddOff_always">Enable alternative activation of SMB depending on active target being even number</string>
+    <string name="enableSMB_EvenOn_OddOff_always_summary">\nenabled ...\nif active target(mmol/L) has even decimal\nor active target(mg/dL) is even number\n\ndisabled otherwise</string>
+    <string name="openapsama_iob_threshold_percent_summary" formatted="false">Percentage of maxIOB above which SMBs are disabled.\nDefault value: 100%\nWith 100% this feature is effectively disabled.</string>
+    <string name="openapsama_iob_threshold_percent">maxIOB threshold percent for SMB\n(iob_threshold_percent)</string>
+    <string name="dynisf_settings_title">DynamicISF</string>
+
+    <string name="enable_smb_bg_threshold">Enable SMB BG Threshold</string>
+    <string name="smb_bg_threshold_title">SMB BG Threshold</string>
+    <string name="smb_bg_threshold_summary">When BG is below this value, SMBs would be disabled.</string>
+
+    <!-- Boost V5 silent shadow (hidden plugin) -->
+    <string name="openaps_boost_v5">Boost V6</string>
+    <string name="boost_v5_shortname">V5</string>
+    <string name="description_boost_v5">Boost V6 — Observe-Confirm-Commit dosing. Runs the Boost engine with V6\'s meal-aware SMB override. Select this as your APS to use V6; select plain \"Boost\" to run the base engine with the override in shadow.</string>
+    <string name="boost_v5_aggression_title">Aggression</string>
+    <string name="boost_v5_aggression_summary">Scales the catch-up dose at meal CONFIRMED. 1.0 = calibrated default; lower = gentler commit dose, higher = more aggressive. Range 0.7-1.3.</string>
+    <string name="boost_v5_hypo_caution_title">Hypo Caution</string>
+    <string name="boost_v5_hypo_caution_summary">Multiplier on the ML hypo-risk damper floor. 1.0 = default; raise toward 2.0 for hypo unawareness or after a recent severe hypo. Range 1.0-2.0.</string>
+    <string name="boost_v5_sensitivity_title">Meal-detection Sensitivity</string>
+    <string name="boost_v5_sensitivity_summary">Reserved knob — currently fixed at 1.0. Will eventually shift the OBSERVING-to-CONFIRMED score threshold for users with consistently early or late meal detection.</string>
+
+    <!-- AutoISF 3.2.0 - activity detection -->
+    <string name="activity_monitor_title">Activity modifies sensitivity</string>
+    <string name="activity_monitor_summary">Activity is detected in form of steps as measured by the phone. It does not replace an explicit sport adjustment but is a lower level complement.</string>
+    <string name="activity_scale_factor_summary" formatted="false">Default: 1.0\nIf activity is detected then its default contribution of 15% or 30% is scaled up or down by this ratio\nA value of 0.0 disables activity contribution to sensitivity</string>
+    <string name="activity_scale_factor_title">Scale factor for final activity sensitivity</string>
+    <string name="inactivity_scale_factor_summary" formatted="false">Default: 1.0\nIf inactivity is detected then its default contribution of 10% or 20% is scaled up or down by this ratio\nA value of 0.0 disables inactivity contribution to sensitivity</string>
+    <string name="inactivity_scale_factor_title">Scale factor for final inactivity sensitivity</string>
+    <string name="ignore_inactivity_overnight_summary">Stop inactivity adaptation during sleeping hours\nDefault is true, i.e. adaptation is off\n\nIf false, leave phone beside bed during short breaks to keep monitoring disabled</string>
+    <string name="ignore_inactivity_overnight_title">Disable inactivity detection during sleep</string>
+    <string name="inactivity_idle_start_summary">Start hour when inactivity monitoring is disabled for sleep\nDefault in 24h notation is 22</string>
+    <string name="inactivity_idle_start_title">Start hour for disabling inactivity monitoring</string>
+    <string name="inactivity_idle_end_summary">End hour of sleep when inactivity monitoring is re-enabled again\nDefault in 24h notation is 6</string>
+    <string name="inactivity_idle_end_title">End hour for disabling inactivity monitoring</string>
+    <string name="steps_graph_from_smartphone_summary">Default: true\notherwise from watch sensor</string>
+    <string name="steps_graph_from_smartphone_title">Steps graph from smartphone sensor</string>
+
+    <!-- AutoISF 3.2.0 - FSL/Libre calibration &amp; smoothing -->
+    <string name="calibration_stops_smb_summary" translatable="false">Trigger this once before changing calibration settings</string>
+    <string name="calibration_stops_smb_title" translatable="false">Disable SMB and AutoISF weights for 20m after fresh calibration</string>
+    <string name="calibration_enable_smb_summary" translatable="false">Activate this when suppressing is no longer required because calibration transition was smooth</string>
+    <string name="calibration_enable_smb_title" translatable="false">Re-enable SMB and AutoISF weights earlier anyway</string>
+    <string name="fslCal_Offset_summary">OFFSET value as in calibration formula\nLibre_calibrated = OFFSET + slope * Libre_raw</string>
+    <string name="fslCal_Offset_title">Offset of Libre calibration versus finger like in xDrip</string>
+    <string name="fslCal_Slope_summary">SLOPE value as in calibration formula\nLibre_calibrated = offset + SLOPE * Libre_raw</string>
+    <string name="fslCal_Slope_title">Slope of Libre calibration versus finger like in xDrip</string>
+    <string name="fsl_exp1_factor_summary">Used without xDrip 1 minute smoothing in between\n0.0 : max. effect\n1.0 : min. effect</string>
+    <string name="fsl_exp1_factor_title">Libre 1st order exponential smoothing factor</string>
+    <string name="MaintenanceCleanupDays_summary">When using Libre 1 minute CGM define a shorter period for DB cleanup like 15 days or even less to improve performance.\nNote that AAPS standard is 93 days</string>
+    <string name="MaintenanceCleanupDays_title">How many days to keep on DB cleanup</string>
+    <!-- Dynamic CR (ported from iAPS/Trio) -->
+    <string name="dynamic_cr_submenu_title" comment="Settings submenu title. CR = carb ratio. Groups the Dynamic CR settings.">Dynamic CR</string>
+    <string name="pref_title_aps_use_dynamic_carb_ratio" comment="Preference title. CR = carb ratio. Enables a glucose-modulated carb ratio (ported from iAPS/Trio).">Enable Dynamic Carb Ratio</string>
+    <string name="pref_summary_aps_use_dynamic_carb_ratio" comment="Preference summary. Adjusts the carb ratio (CR) dynamically from current glucose using a logarithmic or sigmoid formula.">Adjust carb ratio dynamically based on current glucose levels using logarithmic or sigmoid formula</string>
+    <string name="pref_title_aps_dynamic_cr_formula" comment="Preference title. Selects the Dynamic CR formula.">Dynamic CR Formula</string>
+    <string name="pref_summary_aps_dynamic_cr_formula" comment="Preference summary. Choice between the logarithmic and sigmoid carb-ratio formula.">Formula used to modulate the carb ratio from glucose and TDD</string>
+    <string name="dynamic_cr_formula_logarithmic" comment="Dynamic CR formula option (dropdown entry).">Logarithmic</string>
+    <string name="dynamic_cr_formula_sigmoid" comment="Dynamic CR formula option (dropdown entry).">Sigmoid</string>
+    <string name="pref_title_aps_dynamic_cr_adjustment_factor" comment="Preference title. Tuning factor controlling how aggressively the carb ratio is adjusted.">Dynamic CR Adjustment Factor</string>
+    <string name="pref_summary_aps_dynamic_cr_adjustment_factor" comment="Preference summary. CR = carb ratio. Higher = more aggressive carb-ratio adjustment. Note both Dynamic CR formulas use this one value.">Controls how aggressively the carb ratio is adjusted based on glucose deviation from target. Applies to both the logarithmic and sigmoid formulas, which respond differently to it — re-tune after switching formula.</string>
+    <string name="pref_title_aps_dynamic_cr_weight_percentage" comment="Preference title. Weight of recent 24h TDD vs long-term TDD average used by Dynamic CR.">TDD Weight Percentage</string>
+    <string name="pref_summary_aps_dynamic_cr_weight_percentage" formatted="false" comment="Preference summary. TDD = total daily dose. Example: 0.65 = 65% recent, 35% long-term.">Weight of past 24h TDD vs long-term average. Default: 0.65 (65% recent, 35% long-term)</string>
+    <string name="pref_title_aps_dynamic_cr_use_custom_peak_time" comment="Preference title. Use a custom insulin peak time for the Dynamic CR calculation.">Use Custom Insulin Peak Time</string>
+    <string name="pref_summary_aps_dynamic_cr_use_custom_peak_time" comment="Preference summary. CR = carb ratio. Uses a custom insulin peak time instead of the default for the Dynamic CR formula.">Use custom insulin peak time instead of default values for dynamic CR calculation</string>
+    <string name="pref_title_aps_dynamic_cr_peak_time" comment="Preference title. Custom insulin peak time in minutes used by Dynamic CR when the custom-peak option is enabled.">Dynamic CR insulin peak time</string>
+    <string name="pref_summary_aps_dynamic_cr_peak_time" comment="Preference summary. Insulin peak time in minutes (e.g. 75) used in the Dynamic CR formula when custom peak time is enabled.">Insulin peak time in minutes used by the Dynamic CR formula when custom peak time is enabled.</string>
+    <string name="pref_title_aps_auto_cr" comment="Preference title. CR = carb ratio, ISF = insulin sensitivity factor. Ties the carb ratio to the AutoISF sensitivity adjustment.">Enable Automatic CR</string>
+    <string name="pref_summary_aps_auto_cr" comment="Preference summary. CR = carb ratio, ISF = insulin sensitivity factor, CSF = carb sensitivity factor (ISF/CR). Scales CR by the same factor AutoISF scales ISF, keeping CSF at the profile baseline. Ignored when Dynamic Carb Ratio is enabled.">Scale the carb ratio by the same factor AutoISF adjusts ISF, keeping the carb sensitivity factor (ISF/CR) at your profile baseline. Ignored when Dynamic Carb Ratio is enabled.</string>
+
+    <!-- Boost V5/V6 engine + sleep/HR/Health-Connect settings (ported from boost_v6) -->
+    <string name="boost_activity_shadow_summary">SHADOW ONLY — never changes dosing. Reads daily steps from Health Connect (single source, de-duplicated), learns your personal step baseline, and logs to Nightscout what an activity/inactivity sensitivity modifier WOULD do (e.g. \"wouldΔISF +12%\" after a high-activity day). Needs Health Connect Read Steps permission granted. For data-gathering ahead of a future feature.</string>
+    <string name="boost_activity_shadow_title">Activity-load shadow (steps)</string>
+    <string name="boost_autosens_when_no_tdd_summary">When TDD-DynISF is OFF, let traditional Autosens drive basal/target/CR sensitivity (instead of the DynISF curve ratio). Requires Autosens enabled. No effect when TDD is on — TDD owns sensitivity then. The Autosens-vs-curve comparison is logged either way; start OFF and validate before enabling.</string>
+    <string name="boost_autosens_when_no_tdd_title">Use traditional Autosens when TDD is off</string>
+    <string name="boost_hc_grant_summary">Tap to request the Read Heart Rate permission. Until granted, AAPS does not appear in the Health Connect app list. After granting, the poll interval setting controls ingest cadence.</string>
+    <string name="boost_hc_grant_title">Grant Health Connect access</string>
+    <string name="boost_hc_hr_summary">Reads heart rate from Android Health Connect on a polling cadence. Lets Garmin Connect / Wear OS HR flow into Boost continuously (including overnight) without needing the watch field to be actively pulling glucose. Requires the user to install Health Connect (on Android &lt; 14) and grant Read Heart Rate permission. Open Health Connect settings to grant.</string>
+    <string name="boost_hc_hr_title">Use Health Connect for HR</string>
+    <string name="boost_hc_poll_summary">How often to query Health Connect for new HR records. Lower = fresher data, slightly more battery. Default 5.</string>
+    <string name="boost_hc_poll_title">Health Connect poll interval (minutes)</string>
+    <string name="boost_night_mode_auto_by_sleep_summary">When ON, sleep state (heart rate + steps) drives Night Mode in addition to the time window. Engages early (PRE_SLEEP) ApsBoostPreSleepLeadMin before nightStart to limit IOB before bed; stays active past nightEnd if still sleeping. Wake requires BOTH HR rise and step activity (BG trend alone does not wake). Requires a HR source (Wear OS / Garmin).</string>
+    <string name="boost_night_mode_auto_by_sleep_title">Auto-detect sleep (HR + steps)</string>
+    <string name="boost_pre_sleep_lead_min_summary">How many minutes before Night Mode Start to enter PRE_SLEEP and engage Night Mode SMB suppression. Default 60.</string>
+    <string name="boost_pre_sleep_lead_min_title">Pre-sleep lead time (minutes)</string>
+    <string name="boost_sleep_hysteresis_min_summary">HR + steps conditions must hold for this many minutes before SLEEPING is confirmed. Default 10.</string>
+    <string name="boost_sleep_hysteresis_min_title">Sleep confirmation window (minutes)</string>
+    <string name="boost_v1_smb_sizing_title">Boost base-engine SMB sizing</string>
+    <string name="boost_v5_fast_carb_confirm_summary">When a rise is sharp AND accelerating AND the meal score corroborates (and you\'re awake, not exercising), V6 confirms the meal in one cycle instead of waiting — so fast carbs get covered ~15 min earlier. Replay-validated to avoid firing on sleep/compression. Toggle off to revert to the standard observe-confirm timing.</string>
+    <string name="boost_v5_fast_carb_confirm_title">V6 fast-carb fast-path</string>
+    <string name="boost_v5_aggressive_early_confirm_title">Aggressive early confirm</string>
+    <string name="boost_v5_aggressive_early_confirm_summary">Confirms a meal one cycle sooner still when its signal is confirm-strength on two consecutive cycles — the same shot, delivered a touch earlier. Because it occasionally commits to a rise that would have faded, it adds a little insulin, so it is set automatically only for users whose recent low-glucose exposure is well within target. Default OFF; auto-config turns it on where it is safe. Leave off (or turn off) to keep the standard confirm timing.</string>
+    <string name="boost_v5_composed_floor_title">Phase-3 composed brake floor</string>
+    <string name="boost_v5_composed_floor_summary">Enforces a 25% floor on the composed soft-brake multiplier during active meal sessions above 160 mg/dL with eventualBG above target — fixes the soft-brake stack compounding to sub-pump-step zero doses mid-meal (July 2026). All hard gates and dose caps still apply. Default OFF. ENFORCED hypo-gate: the floor engages ONLY while BOTH your trailing 14-day time below 63 mg/dL (3.5 mmol/L) is under 2.0% AND your time below 70 mg/dL is under 3.5% — it is insulin-adding, so it stays suppressed (even when this is ON) if either low-exposure figure is higher, and auto-re-engages when both drop back under their limits.</string>
+    <string name="boost_v5_velocity_budget_title">Velocity-budget floor (high tail)</string>
+    <string name="boost_v5_velocity_budget_summary">When you are above 180 mg/dL but oref calculates no extra insulin is needed (it predicts you will come down on the insulin already on board), this delivers a small hold — up to 0.5 U, capped at your committed-cap and your IOB headroom — to bring highs down a little faster. It deliberately doses a touch more than the base algorithm on that high tail, so it is for users who prefer a firmer response to sustained highs. Excludes decelerating highs, sleep, and the post-rescue window; all hard hypo gates still apply. Default OFF. Uses the SAME ENFORCED hypo-gate as the brake floor: engages ONLY while your trailing 14-day time below 63 mg/dL is under 2.0% AND time below 70 mg/dL is under 3.5%, and auto-suspends if either rises.</string>
+    <string name="boost_wake_hr_hysteresis_min_summary">HR > 1.25× resting AND steps ≥ 100 must both hold for this many minutes before exiting SLEEPING. Default 5.</string>
+    <string name="boost_wake_hr_hysteresis_min_title">Wake confirmation window (minutes)</string>
+</resources>
